@@ -5329,7 +5329,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log(this.title);
@@ -5345,7 +5344,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.title === '') {
         alert('메모를 입력해 주세요');
       } else {
-        console.log(this.title);
+        alert(this.title);
       }
     }
   }
