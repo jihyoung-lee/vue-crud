@@ -5331,9 +5331,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log(this.title);
-  },
+  mounted: function mounted() {},
   data: function data() {
     return {
       title: '' // Memo 생성할 때, text form 값과 v-model로 바인딩
@@ -5342,15 +5340,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      var _this = this;
-
       if (this.title === '') {
         alert('메모를 입력해 주세요');
       } else {
         axios.post('api/memo/title', {
           title: this.title
         }).then(function (res) {
-          _this.memoList.push(res.data.memoList);
+          //this.memoList.push(res.data.memoList)
+          alert(res.data.memoList);
         })["catch"](function (error) {
           return console.log(error.response);
         });
@@ -5377,7 +5374,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
