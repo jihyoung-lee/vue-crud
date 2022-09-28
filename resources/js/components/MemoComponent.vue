@@ -20,7 +20,7 @@
 
 export default {
         mounted() {
-            console.log(this.title)
+
         },
         data() {
             return {
@@ -35,8 +35,8 @@ export default {
                     axios.post('api/memo/title', {
                         title: this.title,
                     }).then(res => {
-                        this.memoList.push(res.data.memoList)
-
+                        //this.memoList.push(res.data.memoList)
+                        alert(res.data.memoList)
                     })
                         .catch(error => console.log(error.response));
                     }            this.title=''; // 초기화
