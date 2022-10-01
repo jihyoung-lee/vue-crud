@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 
 class MemoController extends Controller
 {
-    public function store()
+    public function index(): \Illuminate\Http\JsonResponse
+    {
+        $memoList = MemoList::all(['title']);
+        return response()->json([
+            'memoList' => $memoList
+        ], 200);
+    }
+    public function store(): \Illuminate\Http\JsonResponse
     {
         $validated = request()->validate(
             ['title'=> 'required',
