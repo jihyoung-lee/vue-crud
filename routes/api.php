@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/memo/title',[Memocontroller::class, 'store']);
+Route::get('/memo/',[MemoController::class,'index']);
