@@ -3,7 +3,7 @@
         <div id="menu_wrap" class="bg-yellow-600 text-black w-128 px-1 py-2">
             <div class="option">
                 <button class="py-2 px-4 rounded-lg shadow-md text-white bg-blue-500" v-on:click="getData">
-                    Click me [{{title}}]
+                    Click [{{title}}]
                 </button>
                 <button class="absolute mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor" class="w-6 h-6">
