@@ -40,7 +40,7 @@ export default {
     data() {
         return {
             memoList : [],
-            title: '', // Memo 생성할 때, text form 값과 v-model로 바인딩
+            title: '', // Memo 생성할 때, text form 값과 v-model 로 바인딩
             display: false,
         }
     },
