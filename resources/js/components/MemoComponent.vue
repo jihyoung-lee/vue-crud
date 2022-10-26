@@ -14,7 +14,6 @@
                 <div class="memo-side">
                     <div class="new-title text-3xl font-bold ">{{title}}</div>
                 </div>
-
             </div>
 
             <memo-list-component></memo-list-component>
@@ -37,10 +36,19 @@ export default {
 
     data() {
         return {
+            memoList : [],
             title: '', // Memo 생성할 때, text form 값과 v-model로 바인딩
             display: false,
         }
     },
+    created() {
+        axios.get('api/memo').then((res) => {
+            this.memoList = res.data.memoList;
+            console.log(res.data.memoList)
+        }).catch(error => {
+            console.log(error)
+        });}
+,
     methods: {
         submit()
             {
@@ -50,7 +58,8 @@ export default {
                   axios.post('api/memo/title', {
                         title: this.title,
                     }).then(res => {
-                      //console.log(res)
+                      //this.memoList = res.data.memoList
+                        this.getData()
                     })
                         .catch(error => console.log(error.response));
                 }
@@ -60,6 +69,14 @@ export default {
             display_on(){
                 this.display = this.title !== '';
             }
-        },
+            ,
+        getData(){
+            axios.get('api/memo').then((res) => {
+                this.memoList = res.data.memoList;
+                console.log(res.data.memoList)
+            }).catch(error => {
+                console.log(error)
+            });}
+        }
 }
 </script>
