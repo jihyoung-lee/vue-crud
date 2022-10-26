@@ -5,9 +5,6 @@
             <div class="new-title text-3xl font-bold ">
                 <div pt-3>
                     {{item.title}}
-                    <button class="py-2 px-4 rounded-lg shadow-md text-white bg-blue-500" v-on:click="getData">
-                    Click me [{{title}}]
-                </button>
                 </div>
             </div>
         </div>
