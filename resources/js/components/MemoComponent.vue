@@ -60,11 +60,11 @@ export default {
                 } else {
                   axios.post('api/memo/title', {
                         title: this.title,
-                    }).then(res => {
-                      //this.memoList = res.data.memoList
+                    }).then((res => {
+                        this.memoList = res.data.memoList
                         this.getData()
                     })
-                        .catch(error => console.log(error.response));
+                        .catch(error => console.log(error.response)));
                 }
             this.title = ''; // 초기화
             }
