@@ -19,6 +19,7 @@
             <memo-list-component></memo-list-component>
             <button class="py-2 px-4 rounded-lg shadow-md text-white bg-blue-500" v-on:click="getData">
                 Click me [{{title}}]
+
             </button>
         </div>
 
