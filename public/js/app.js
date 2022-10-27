@@ -28445,9 +28445,56 @@ var render = function () {
           ]
         ),
         _vm._v(" "),
+<<<<<<< Updated upstream
         _c("memo-list-component"),
       ],
       1
+=======
+        _c(
+          "div",
+          { staticClass: "memo-side" },
+          _vm._l(_vm.memoList, function (item, idx) {
+            return _c(
+              "div",
+              {
+                key: idx,
+                staticClass:
+                  "top-wrapper w-128 flex justify-between pb-8 px-6 py-8 bg-amber-300 hover:bg-amber-500 rounded-t-lg",
+              },
+              [
+                _c("div", { staticClass: "new-title text-3xl font-bold" }, [
+                  _c("div", { attrs: { "pt-3": "" } }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(item.title) +
+                        "\n                        "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "py-2 px-4 rounded-lg shadow-md text-white bg-red-500",
+                        on: {
+                          click: function ($event) {
+                            return _vm.deleteData(item.id)
+                          },
+                        },
+                      },
+                      [
+                        _vm._v(
+                          "\n                        x\n                        "
+                        ),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]
+            )
+          }),
+          0
+        ),
+      ]
+>>>>>>> Stashed changes
     ),
   ])
 }

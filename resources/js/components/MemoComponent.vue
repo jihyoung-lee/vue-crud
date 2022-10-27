@@ -24,6 +24,12 @@
                     <div class="new-title text-3xl font-bold ">
                         <div pt-3>
                             {{item.title}}
+<<<<<<< Updated upstream
+=======
+                            <button class="py-2 px-4 rounded-lg shadow-md text-white bg-red-500" v-on:click="deleteData(item.id)">
+                            x
+                            </button>
+>>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
