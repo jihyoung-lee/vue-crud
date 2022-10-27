@@ -12,5 +12,5 @@ class MemoList extends Model
 {
     use HasFactory;
     protected $table ='MemoList';
-    protected $fillable = ['title'];
+    protected $fillable = ['title','id'];
 }

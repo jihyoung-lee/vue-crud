@@ -9,7 +9,7 @@ class MemoController extends Controller
 {
     public function index(): \Illuminate\Http\JsonResponse
     {
-        $memoList = MemoList::all(['title']);
+        $memoList = MemoList::all();
         return response()->json([
             'memoList' => $memoList
         ], 200);
@@ -25,5 +25,8 @@ class MemoController extends Controller
         return response()->json([
             'memoList' => $memoList,
         ], 200);
+    }
+    public function destroy($id){
+        return MemoList::destroy($id);
     }
 }
