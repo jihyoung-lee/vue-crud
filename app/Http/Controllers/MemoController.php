@@ -2,29 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MemoRequest;
+use App\Http\Resources\MemoResource;
 use App\Models\MemoList;
 use Illuminate\Http\Request;
 
 class MemoController extends Controller
 {
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        $memoList = MemoList::all();
-        return response()->json([
-            'memoList' => $memoList
-        ], 200);
+        return MemoResource::collection(MemoList::all());
     }
-    public function store(): \Illuminate\Http\JsonResponse
+    public function store(MemoRequest $memoRequest): MemoResource
     {
-        $validated = request()->validate(
-            ['title'=> 'required',
-            ] );
+       $memoList = MemoList::create($memoRequest->validated());
 
-        $memoList = MemoList::create($validated);
-
-        return response()->json([
-            'memoList' => $memoList,
-        ], 200);
+       return new MemoResource($memoList);
     }
     public function destroy($id){
         return MemoList::destroy($id);

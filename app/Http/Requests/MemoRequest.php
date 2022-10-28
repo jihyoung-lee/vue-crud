@@ -24,7 +24,7 @@ class MemoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' =>['required', 'string']
         ];
     }
 }

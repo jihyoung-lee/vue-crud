@@ -5359,28 +5359,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
+    this.getData();
+    this.title = ''; // 초기화
 
-    axios.get('api/memo').then(function (res) {
-      _this.memoList = res.data.memoList;
-      console.log(res.data.memoList);
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    console.log(res);
   },
   methods: {
-    "getData": function getData() {
-      var _this2 = this;
-
-      axios.get('api/memo').then(function (res) {
-        _this2.memoList = res.data.memoList;
-        console.log(res.data.memoList);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
     "submit": function submit() {
-      var _this3 = this;
+      var _this = this;
 
       if (this.title === '') {
         alert('메모를 입력해 주세요');
@@ -5388,24 +5374,36 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('api/memo', {
           title: this.title
         }).then(function (res) {
-          _this3.getData();
-        }["catch"](function (error) {
-          return console.log(error.response);
-        }));
-      }
+          _this.memoList.push(res.data.data);
 
-      this.title = ''; // 초기화
+          _this.getData();
+        })["catch"](function (error) {
+          return console.log(error.response);
+        });
+      }
+    },
+    "getData": function getData() {
+      var _this2 = this;
+
+      axios.get('api/memo').then(function (res) {
+        _this2.memoList = res.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     "deleteData": function deleteData(id) {
-      var _this4 = this;
+      var _this3 = this;
 
       axios["delete"]('api/memo/' + id).then(function (res) {
-        _this4.getData();
+        _this3.getData();
 
         console.log(res);
       })["catch"](function (error) {
         return console.log(error.response);
       });
+    },
+    initValue: function initValue() {
+      this.title = "";
     },
     display_on: function display_on() {
       this.display = this.title !== '';
@@ -28278,9 +28276,10 @@ var render = function () {
             directives: [
               {
                 name: "model",
-                rawName: "v-model",
+                rawName: "v-model.trim",
                 value: _vm.title,
                 expression: "title",
+                modifiers: { trim: true },
               },
             ],
             staticClass: "w-full px-5 py-1 rounded-lg outline-none",
@@ -28301,14 +28300,17 @@ var render = function () {
                   ) {
                     return null
                   }
-                  _vm.getData(), _vm.submit()
+                  _vm.submit(), _vm.getData(), _vm.initValue()
                 },
               ],
               input: function ($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.title = $event.target.value
+                _vm.title = $event.target.value.trim()
+              },
+              blur: function ($event) {
+                return _vm.$forceUpdate()
               },
             },
           }),

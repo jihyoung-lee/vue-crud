@@ -9,7 +9,7 @@
                     </svg>
                 </button>
 
-                <input type="text" id="keyword" size="20" class="w-full px-5 py-1 rounded-lg outline-none" placeholder="입력해 주세요" v-model="title" @keyup="display_on" @keyup.enter="getData(),submit()">
+                <input type="text" id="keyword" size="20" class="w-full px-5 py-1 rounded-lg outline-none" placeholder="입력해 주세요" v-model.trim="title" @keyup="display_on" @keyup.enter="submit(),getData(),initValue()">
             </div>
             <div class="top-wrapper w-128 flex justify-between pb-8 px-6 py-8  bg-amber-300 hover:bg-amber-500 rounded-t-lg " v-show="display" >
                 <div class="memo-side">
@@ -45,21 +45,12 @@ export default {
         }
     },
     created() {
-        axios.get('api/memo').then((res) => {
-            this.memoList = res.data.memoList;
-            console.log(res.data.memoList)
-        }).catch(error => {
-            console.log(error)
-        });}
+            this.getData()
+            this.title = ''; // 초기화
+            console.log(res)
+        }
 ,
     methods: {
-        "getData" : function (){
-            axios.get('api/memo').then((res) => {
-                this.memoList = res.data.memoList;
-                console.log(res.data.memoList)
-            }).catch(error => {
-                console.log(error)
-            });},
         "submit" : function ()
             {
                 if (this.title === '') {
@@ -68,13 +59,19 @@ export default {
                   axios.post('api/memo', {
                         title: this.title,
                     }).then((res => {
+                      this.memoList.push(res.data.data)
                       this.getData()
-                    })
-                        .catch(error => console.log(error.response)));
+                    })).catch(error => console.log(error.response));
                 }
-            this.title = ''; // 초기화
             }
             ,
+        "getData" : function (){
+            axios.get('api/memo').then((res) => {
+                this.memoList = res.data.data;
+            }).catch(error => {
+                console.log(error);
+            });
+             },
         "deleteData" : function (id){
           axios.delete('api/memo/'+id)
               .then((res)=>{
@@ -82,6 +79,9 @@ export default {
                   console.log(res);
               })
               .catch(error => console.log(error.response));
+        },
+        initValue(){
+                this.title = "";
         },
             display_on(){
                 this.display = this.title !== '';
